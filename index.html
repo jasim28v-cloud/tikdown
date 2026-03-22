@@ -5,80 +5,198 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TIKDOWN PRO | ULTIMATE EDITION</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #fe2c55; --secondary: #25f4ee; --bg-dark: #020205;
-            --glass: rgba(255, 255, 255, 0.02); --border: rgba(255, 255, 255, 0.1);
+            --primary: #fe2c55;
+            --secondary: #25f4ee;
+            --bg-dark: #020205;
+            --glass: rgba(255, 255, 255, 0.02);
+            --border: rgba(255, 255, 255, 0.1);
         }
+
         body {
-            background: var(--bg-dark); color: #fff; font-family: 'Cairo', sans-serif;
-            margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh;
-            background-image: radial-gradient(circle at 5% 5%, rgba(254, 44, 85, 0.1) 0%, transparent 30%);
+            background: var(--bg-dark);
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 5% 5%, rgba(254, 44, 85, 0.15) 0%, transparent 30%),
+                              radial-gradient(circle at 95% 95%, rgba(37, 244, 238, 0.15) 0%, transparent 30%);
+            overflow-x: hidden;
         }
+
         .ultra-card {
-            background: var(--glass); backdrop-filter: blur(40px); border: 1px solid var(--border);
-            border-radius: 40px; padding: 40px; width: 90%; max-width: 600px; text-align: center;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            background: var(--glass);
+            backdrop-filter: blur(50px) saturate(200%);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 50px 30px;
+            width: 90%;
+            max-width: 650px;
+            text-align: center;
+            box-shadow: 0 50px 150px rgba(0,0,0,0.9);
+            animation: float 6s ease-in-out infinite;
         }
-        .logo { font-size: 2.5rem; font-weight: 900; background: linear-gradient(45deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .tabs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 25px 0; }
-        .tab { padding: 10px; border-radius: 15px; background: rgba(255,255,255,0.05); cursor: pointer; font-size: 0.8rem; transition: 0.3s; border: 1px solid transparent; }
-        .tab.active { border-color: var(--secondary); background: rgba(37, 244, 238, 0.1); }
-        input { width: 100%; padding: 18px; border-radius: 20px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: #fff; text-align: center; margin-bottom: 20px; outline: none; }
-        .action-btn { width: 100%; padding: 18px; border-radius: 20px; background: var(--primary); color: #fff; border: none; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
-        #resultArea { display: none; margin-top: 30px; animation: fadeIn 0.5s; }
-        video { width: 100%; border-radius: 20px; margin-bottom: 15px; }
-        .download-links { display: flex; gap: 10px; }
-        .dl-btn { flex: 1; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary), #fff, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -2px;
+        }
+
+        .subtitle { color: rgba(255,255,255,0.5); font-size: 1rem; margin-bottom: 35px; }
+
+        .tabs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 15px 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.4s;
+            font-size: 0.8rem;
+            color: #777;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab i { font-size: 1.5rem; }
+        .tab.active {
+            background: rgba(255,255,255,0.07);
+            border-color: #fff;
+            color: #fff;
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255,255,255,0.1);
+        }
+
+        /* ألوان التنشيط */
+        .tab[data-type="tiktok"].active { color: #ff0050; border-color: #ff0050; }
+        .tab[data-type="youtube"].active { color: #ff0000; border-color: #ff0000; }
+        .tab[data-type="instagram"].active { color: #e1306c; border-color: #e1306c; }
+        .tab[data-type="facebook"].active { color: #1877f2; border-color: #1877f2; }
+        .tab[data-type="x"].active { color: #fff; border-color: #fff; }
+
+        input {
+            width: 100%;
+            padding: 22px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            color: #fff;
+            font-size: 1.1rem;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
+            margin-bottom: 25px;
+            box-sizing: border-box;
+        }
+        input:focus { border-color: var(--secondary); background: rgba(255,255,255,0.08); }
+
+        .action-btn {
+            background: linear-gradient(90deg, var(--primary), #ff4b2b);
+            color: #fff;
+            border: none;
+            padding: 22px;
+            width: 100%;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 20px 50px rgba(254, 44, 85, 0.3);
+        }
+        .action-btn:hover { transform: scale(1.02); box-shadow: 0 30px 60px rgba(254, 44, 85, 0.5); }
+
+        #resultArea { margin-top: 40px; display: none; animation: scaleIn 0.5s ease-out; }
+        @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        #videoTitle { font-size: 1rem; margin-bottom: 20px; color: var(--secondary); }
+        video { width: 100%; border-radius: 30px; border: 1px solid var(--border); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+
+        .download-links { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+        .dl-btn {
+            padding: 18px; border-radius: 18px; text-decoration: none; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;
+        }
         .v-btn { background: #fff; color: #000; }
         .a-btn { background: var(--secondary); color: #000; }
-        .loader { display: none; width: 25px; height: 25px; border: 3px solid #fff; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 10px auto; }
+
+        .loader { width: 30px; height: 30px; border: 4px solid #fff; border-top-color: transparent; border-radius: 50%; display: none; animation: spin 0.8s linear infinite; margin: 10px auto; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
     <div class="ultra-card">
         <div class="logo">TIKDOWN PRO</div>
-        <p style="color: #666;">الجيل القادم من سحب الميديا</p>
+        <div class="subtitle">نظام سحب الميديا العالمي | النسخة المطورة 🔥</div>
 
         <div class="tabs">
-            <div class="tab active" data-type="tiktok"><i class="fab fa-tiktok"></i></div>
-            <div class="tab" data-type="youtube"><i class="fab fa-youtube"></i></div>
-            <div class="tab" data-type="instagram"><i class="fab fa-instagram"></i></div>
-            <div class="tab" data-type="facebook"><i class="fab fa-facebook"></i></div>
-            <div class="tab" data-type="x"><i class="fab fa-x-twitter"></i></div>
+            <div class="tab active" data-type="tiktok" onclick="switchTab('tiktok')"><i class="fab fa-tiktok"></i><span>Tiktok</span></div>
+            <div class="tab" data-type="youtube" onclick="switchTab('youtube')"><i class="fab fa-youtube"></i><span>Youtube</span></div>
+            <div class="tab" data-type="instagram" onclick="switchTab('instagram')"><i class="fab fa-instagram"></i><span>Instagram</span></div>
+            <div class="tab" data-type="facebook" onclick="switchTab('facebook')"><i class="fab fa-facebook"></i><span>Facebook</span></div>
+            <div class="tab" data-type="x" onclick="switchTab('x')"><i class="fab fa-x-twitter"></i><span>X Corp</span></div>
         </div>
 
-        <input type="text" id="urlInput" placeholder="ضع الرابط هنا لفك التشفير...">
+        <input type="text" id="urlInput" placeholder="ضع رابط الفيديو هنا...">
         
-        <button class="action-btn" id="mainBtn" onclick="startMission()">بدأ السحب الرقمي 🔥</button>
-        <div class="loader" id="loader"></div>
+        <button class="action-btn" id="mainBtn" onclick="startMission()">
+            <span id="btnText">بدأ السحب الرقمي 🔥</span>
+            <div class="loader" id="loader"></div>
+        </button>
 
         <div id="resultArea">
-            <h4 id="videoTitle" style="font-size: 0.9rem; margin-bottom: 15px;"></h4>
+            <h4 id="videoTitle"></h4>
             <video id="videoPreview" controls poster=""></video>
             <div class="download-links">
-                <a id="downloadVideo" href="" class="dl-btn v-btn" target="_blank">تحميل فيديو MP4</a>
-                <a id="downloadAudio" href="" class="dl-btn a-btn" target="_blank">تحميل صوت MP3</a>
+                <a id="downloadVideo" href="" class="dl-btn v-btn" target="_blank"><i class="fas fa-video"></i> فيديو MP4</a>
+                <a id="downloadAudio" href="" class="dl-btn a-btn" target="_blank"><i class="fas fa-music"></i> صوت MP3</a>
             </div>
         </div>
     </div>
 
     <script>
-        // رابط سيرفر الـ Backend الخاص بك بعد الرفع
-        const API_BASE = "https://your-server-link.onrender.com"; 
+        // رابط المحرك الخلفي (The Shadow Engine)
+        const API_BASE = "https://tikdown-6go7.onrender.com"; 
+        let currentPlatform = 'tiktok';
+
+        function switchTab(type) {
+            currentPlatform = type;
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.tab[data-type="${type}"]`).classList.add('active');
+            document.getElementById('resultArea').style.display = 'none';
+        }
 
         async function startMission() {
             const url = document.getElementById('urlInput').value.trim();
-            if(!url) return alert("أدخل الرابط أولاً!");
+            if(!url) { alert("أدخل الرابط يا صديقي!"); return; }
 
-            document.getElementById('mainBtn').style.display = 'none';
+            // حالة التحميل
+            document.getElementById('btnText').style.display = 'none';
             document.getElementById('loader').style.display = 'block';
             document.getElementById('resultArea').style.display = 'none';
 
             try {
+                // استدعاء المحرك
                 const response = await fetch(`${API_BASE}/api/extract?url=${encodeURIComponent(url)}`);
                 const data = await response.json();
 
@@ -87,15 +205,16 @@
                     document.getElementById('videoPreview').src = data.url;
                     document.getElementById('videoPreview').poster = data.thumbnail;
                     document.getElementById('downloadVideo').href = data.url;
-                    document.getElementById('downloadAudio').href = data.url; // يمكن تحسينه لتحميل صوت فقط
+                    document.getElementById('downloadAudio').href = data.url; // يمكنك توجيهه لمسار الصوت لاحقاً
                     document.getElementById('resultArea').style.display = 'block';
+                    document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
                 } else {
-                    alert("فشل الاستخراج: " + data.error);
+                    alert("⚠️ فشل المحرك: " + data.error);
                 }
             } catch (err) {
-                alert("خطأ في الاتصال بالسيرفر الخلفي!");
+                alert("❌ خطأ: السيرفر الخلفي لا يستجيب أو ما زال في طور التشغيل.");
             } finally {
-                document.getElementById('mainBtn').style.display = 'block';
+                document.getElementById('btnText').style.display = 'block';
                 document.getElementById('loader').style.display = 'none';
             }
         }
