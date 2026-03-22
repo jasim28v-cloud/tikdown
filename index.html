@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIKDOWN PRO | ULTIMATE EDITION</title>
+    <title>TIKDOWN PRO | المحرك العالمي للسحب الرقمي</title>
+    <meta name="description" content="أسرع أداة لسحب الفيديوهات من تيك توك، يوتيوب، وفيسبوك بدون علامة مائية">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;700;900&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary: #fe2c55;
             --secondary: #25f4ee;
-            --bg-dark: #020205;
-            --glass: rgba(255, 255, 255, 0.02);
+            --dark: #020205;
+            --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.1);
         }
+
         body {
-            background: var(--bg-dark);
+            background: var(--dark);
             color: #fff;
             font-family: 'Cairo', sans-serif;
             margin: 0;
@@ -23,68 +27,209 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-image: radial-gradient(circle at 5% 5%, rgba(254, 44, 85, 0.15) 0%, transparent 30%),
-                              radial-gradient(circle at 95% 95%, rgba(37, 244, 238, 0.15) 0%, transparent 30%);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(254, 44, 85, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(37, 244, 238, 0.15) 0%, transparent 40%);
+            overflow-x: hidden;
         }
-        .ultra-card {
+
+        .supreme-container {
             background: var(--glass);
-            backdrop-filter: blur(50px) saturate(200%);
+            backdrop-filter: blur(30px) saturate(160%);
             border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: 50px 30px;
+            border-radius: 40px;
+            padding: 40px 25px;
             width: 90%;
-            max-width: 650px;
+            max-width: 550px;
             text-align: center;
-            box-shadow: 0 50px 150px rgba(0,0,0,0.9);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            position: relative;
+            animation: fadeIn 1s ease-out;
         }
-        .logo { font-size: 3rem; font-weight: 900; background: linear-gradient(45deg, var(--primary), #fff, var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
-        input { width: 100%; padding: 22px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 25px; color: #fff; font-size: 1.1rem; text-align: center; outline: none; margin-bottom: 25px; box-sizing: border-box; }
-        .action-btn { background: linear-gradient(90deg, var(--primary), #ff4b2b); color: #fff; border: none; padding: 22px; width: 100%; border-radius: 25px; font-size: 1.3rem; font-weight: 900; cursor: pointer; transition: 0.4s; }
-        #resultArea { margin-top: 40px; display: none; }
-        video { width: 100%; border-radius: 30px; border: 1px solid var(--border); }
-        .dl-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
-        .dl-btn { padding: 18px; border-radius: 18px; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; color: #000; }
-        .v-btn { background: #fff; }
-        .a-btn { background: var(--secondary); }
-        .loader { width: 30px; height: 30px; border: 4px solid #fff; border-top-color: transparent; border-radius: 50%; display: none; animation: spin 0.8s linear infinite; margin: 10px auto; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(to right, var(--primary), #fff, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            filter: drop-shadow(0 0 15px rgba(254, 44, 85, 0.3));
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(37, 244, 238, 0.1);
+            border: 1px solid var(--secondary);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 20px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: var(--secondary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(37, 244, 238, 0.2);
+        }
+
+        .btn-supreme {
+            background: linear-gradient(90deg, var(--primary), #ff5e7e);
+            color: #fff;
+            border: none;
+            padding: 20px;
+            width: 100%;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-supreme:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(254, 44, 85, 0.4);
+        }
+
+        #previewZone {
+            margin-top: 30px;
+            display: none;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        video {
+            width: 100%;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            background: #000;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .dl-card {
+            padding: 15px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .v-card { background: #fff; color: #000; }
+        .a-card { background: var(--secondary); color: #000; }
+
+        .loader {
+            width: 22px; height: 22px;
+            border: 3px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            display: none;
+            animation: spin 0.8s linear infinite;
+        }
+
         @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-    <div class="ultra-card">
+
+    <div class="supreme-container">
         <div class="logo">TIKDOWN PRO</div>
-        <div class="subtitle">نظام سحب الميديا العالمي 🔥</div>
-        <input type="text" id="urlInput" placeholder="ضع رابط الفيديو هنا...">
-        <button class="action-btn" id="mainBtn" onclick="startMission()">
-            <span id="btnText">بدأ السحب الرقمي 🔥</span>
+        <div class="status-badge">المحرك العالمي السحابي متصل ✓</div>
+        
+        <div class="input-group">
+            <input type="text" id="urlInput" placeholder="أدخل رابط الميديا هنا...">
+        </div>
+
+        <button class="btn-supreme" id="actionBtn" onclick="igniteEngine()">
+            <span id="btnText">بدأ السحب الرقمي 🚀</span>
             <div class="loader" id="loader"></div>
         </button>
-        <div id="resultArea">
-            <video id="videoPreview" controls></video>
-            <div class="dl-group">
-                <a id="downloadVideo" href="" class="dl-btn v-btn" target="_blank"><i class="fas fa-video"></i> MP4</a>
-                <a id="downloadAudio" href="" class="dl-btn a-btn" target="_blank"><i class="fas fa-music"></i> MP3</a>
+
+        <div id="previewZone">
+            <video id="vPlayer" controls poster="https://i.ibb.co/vz6091P/loading.gif"></video>
+            <div class="download-grid">
+                <a href="" id="vLink" class="dl-card v-card" target="_blank"><i class="fas fa-video"></i> فيديو MP4</a>
+                <a href="" id="aLink" class="dl-card a-card" target="_blank"><i class="fas fa-music"></i> صوت MP3</a>
             </div>
         </div>
     </div>
+
     <script>
-        const API_BASE = "https://tikdown-6go7.onrender.com"; 
-        async function startMission() {
+        async function igniteEngine() {
             const url = document.getElementById('urlInput').value.trim();
-            if(!url) return alert("أدخل الرابط!");
-            document.getElementById('btnText').style.display = 'none';
-            document.getElementById('loader').style.display = 'block';
+            const btnText = document.getElementById('btnText');
+            const loader = document.getElementById('loader');
+            const preview = document.getElementById('previewZone');
+
+            if (!url) {
+                alert("يا صديقي، الحقل فارغ! ضع الرابط أولاً.");
+                return;
+            }
+
+            // تفعيل حالة التحميل السينمائية
+            btnText.innerText = "جاري تكسير التشفير...";
+            loader.style.display = 'block';
+            preview.style.display = 'none';
+
             try {
-                const response = await fetch(`${API_BASE}/api/extract?url=${encodeURIComponent(url)}`);
-                const data = await response.json();
-                if(data.success) {
-                    document.getElementById('videoPreview').src = data.url;
-                    document.getElementById('downloadVideo').href = data.url;
-                    document.getElementById('downloadAudio').href = data.url;
-                    document.getElementById('resultArea').style.display = 'block';
-                } else { alert("فشل المحرك: " + data.error); }
-            } catch (err) { alert("المحرك لا يستجيب حالياً."); }
-            finally { document.getElementById('btnText').style.display = 'block'; document.getElementById('loader').style.display = 'none'; }
+                // المحرك العالمي الجديد (يدعم يوتيوب، تيك توك، فيسبوك، إنستغرام)
+                const res = await fetch(`https://api.boxapi.xyz/api/v1/download?url=${encodeURIComponent(url)}`);
+                const data = await res.json();
+
+                if (data && data.success) {
+                    document.getElementById('vPlayer').src = data.url;
+                    document.getElementById('vLink').href = data.url;
+                    document.getElementById('aLink').href = data.url; // يمكنك توجيهه لمسار الصوت إذا توفر في الـ API
+                    
+                    preview.style.display = 'block';
+                    btnText.innerText = "تم السحب بنجاح!";
+                } else {
+                    alert("❌ فشل السحب: الرابط محمي جداً أو غير مدعوم.");
+                }
+            } catch (err) {
+                alert("⚠️ خطأ في المحرك السحابي. حاول مرة أخرى.");
+            } finally {
+                loader.style.display = 'none';
+                if(preview.style.display !== 'block') btnText.innerText = "بدأ السحب الرقمي 🚀";
+            }
         }
     </script>
 </body>
